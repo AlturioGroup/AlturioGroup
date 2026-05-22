@@ -1,32 +1,82 @@
 import Image from "next/image";
 import Navbar from "../navbar";
-// import AboutUs from "../about-us";
-// import Services from "../services";
+
+const stats = [
+  { value: "15+", label: "Years of Experience" },
+  { value: "300+", label: "Clients Served" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "12", label: "Industry Sectors" },
+];
 
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden rounded-3xl bg-white flex flex-col px-4 md:px-4 lg:px-4">
+    <section className="relative w-full min-h-screen overflow-hidden rounded-3xl bg-white flex flex-col px-4 py-4">
       {/* 1. Navbar */}
-      <div className="relative z-20 w-full py-2">
+      <div className="relative z-30 w-full">
         <Navbar />
       </div>
 
-      {/* 2. Image — grows to natural image size */}
-      <div className="relative w-full">
+      {/* 2. Hero Image + Overlay Text */}
+      <div className="relative w-full flex-1 rounded-2xl overflow-hidden min-h-[60vh]">
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+
+        {/* Image */}
         <Image
-          src="/Mask group.png"
-          alt="Hero mask overlay"
-          width={1380} // ← set to your actual image dimensions
-          height={599} // ← set to your actual image dimensions
-          className="w-full h-auto" // h-auto = matches image's intrinsic height
+          src="/hero.png"
+          alt="Alturio Group hero"
+          fill
+          className="object-cover object-center"
           priority
         />
-      </div>
 
-      {/* 3. Other sections imported from their own files */}
-      {/* <AboutUs />
-      <Services /> */}
-      {/* add more sections here */}
+        {/* Overlay content — stretch to full height of parent */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 sm:p-10 lg:p-7 h-full ">
+          {/* Top-left: Main heading */}
+          <div className="max-w-xs sm:max-w-lg lg:max-w-2xl xl:max-w-3xl mt-2 sm:mt-4 lg:mb-4 ">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-blue-300 font-semibold mb-3">
+              Alturio Group · Business Consultancy
+            </p>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+              Expert Guidance
+              <br />
+              When Your <span className="text-blue-400">Business</span>
+              <br />
+              Needs It Most
+            </h1>
+            <h2 className="text-sm sm:text-lg lg:text-xl font-light italic text-white/80 mt-3 sm:mt-4 leading-relaxed">
+              Transforming Business Complexity into Competitive Advantage
+            </h2>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3 mt-6 sm:mt-8">
+              <button className="px-5 py-2.5 sm:px-7 sm:py-3 bg-blue-600 hover:bg-blue-700 transition-colors text-white text-sm sm:text-base font-semibold rounded-lg">
+                Get a Free Consultation
+              </button>
+              <button className="px-5 py-2.5 sm:px-7 sm:py-3 border border-white/50 hover:border-white transition-colors text-white text-sm sm:text-base font-medium rounded-lg backdrop-blur-sm">
+                Our Services →
+              </button>
+            </div>
+          </div>
+
+          {/* Bottom: Stats bar — always anchored to bottom */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden backdrop-blur-sm w-full">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center justify-center py-4 sm:py-5 px-3 bg-black/30 hover:bg-black/40 transition-colors"
+              >
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] sm:text-xs text-white/60 mt-1 text-center uppercase tracking-wide">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
