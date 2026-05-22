@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "../navbar";
+import Navbar from "./navbar";
 import ContactPage from "./contact/page";
 
 const stats = [
