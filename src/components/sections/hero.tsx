@@ -41,7 +41,7 @@ export default function Hero() {
             <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
               Expert Guidance
               <br />
-              When Your <span className="text-blue-400">Business</span>
+              When Your <span className="text-blue-600">Business</span>
               <br />
               Needs It Most
             </h1>

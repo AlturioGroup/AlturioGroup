@@ -9,7 +9,10 @@ const contactInfo = [
 
 export default function ContactPage() {
   return (
-    <section className="w-full min-h-screen bg-white py-16 px-4 md:px-8 lg:px-16">
+    <section
+      id="contact"
+      className="w-full min-h-screen bg-white py-16 px-4 md:px-8 lg:px-16"
+    >
       <div className="max-w-6xl mx-auto mb-12 text-center">
         <p className="text-xs uppercase tracking-[0.25em] text-blue-500 font-semibold mb-3">
           Alturio Group · Get In Touch
