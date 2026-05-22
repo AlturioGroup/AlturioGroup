@@ -12,7 +12,7 @@ export default function Navbar() {
     { label: "Home", href: "#home" },
     { label: "About Us", href: "#about" },
     { label: "Services", href: "#services" },
-    { label: "Industries", href: "#insdustries" },
+    { label: "Industries", href: "#industries" },
   ];
 
   const contactButtonClassName =
@@ -26,7 +26,7 @@ export default function Navbar() {
     <nav className="w-full rounded-4xl">
       <div className="max-w-full mx-auto px-0 sm:px-6 lg:px-2">
         <div className="relative flex justify-between items-center h-16">
-          {/* Logo and Brand - Left Side */}
+          {/* Logo and Brand */}
           <div className="flex items-center gap-4">
             <Image
               src="/logo.png"
@@ -40,20 +40,20 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 mx-auto">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-700  text-lg hover:text-blue-600 transition-colors font-medium"
+                className="text-gray-700 text-lg hover:text-blue-600 transition-colors font-medium"
               >
                 {item.label}
               </a>
             ))}
           </div>
 
-          {/* Desktop Contact Button - Right Side */}
+          {/* Desktop Contact Button */}
           <div className="hidden md:flex items-center">
             <Button
               asChild
@@ -64,7 +64,7 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Visible only on mobile */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsOpen(!isOpen)}
@@ -78,52 +78,36 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Modal - Visible when isOpen is true */}
-        {isOpen && (
-          <div
-            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsOpen(false)}
-          >
-            <div
-              className="fixed right-0 top-0 h-full w-64 bg-white shadow-lg z-50 flex flex-col"
-              onClick={(e) => e.stopPropagation()}
+        {/* Mobile Menu — full-width drop-down, same pattern as reference navbar */}
+        <div
+          className={`md:hidden absolute top-15 left-0 w-full bg-white z-40 flex flex-col items-center gap-6 font-semibold text-lg transition-all duration-300 ${
+            isOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none hidden"
+          }`}
+        >
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="w-full text-center text-black hover:text-blue-400 transition-colors py-4 border-b border-white/10"
+              onClick={() => setIsOpen(false)}
             >
-              {/* Close Button */}
-              <div className="flex justify-end p-4">
-                <button
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close menu"
-                  className="p-2"
-                >
-                  <X size={24} className="text-gray-800" />
-                </button>
-              </div>
-
-              {/* Mobile Navigation Options */}
-              <div className="flex flex-col gap-4 px-6 py-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-lg py-2"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <Button
-                  asChild
-                  className={`mt-2 ${contactButtonClassName}`}
-                  style={contactButtonStyle}
-                >
-                  <a href="#contact" onClick={() => setIsOpen(false)}>
-                    Contact Us
-                  </a>
-                </Button>
-              </div>
-            </div>
+              {item.label}
+            </a>
+          ))}
+          <div className="py-4">
+            <Button
+              asChild
+              className={contactButtonClassName}
+              style={contactButtonStyle}
+            >
+              <a href="#contact" onClick={() => setIsOpen(false)}>
+                Contact Us
+              </a>
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
