@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navbar from "../navbar";
+import ContactPage from "./contact/page";
 
 const stats = [
   { value: "15+", label: "Years of Experience" },
@@ -10,7 +11,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden rounded-3xl bg-white flex flex-col px-4 py-4">
+    <section className="relative w-full min-h-screen overflow-hidden rounded-t-3xl bg-white flex flex-col px-4 py-4">
       {/* 1. Navbar */}
       <div className="relative z-30 w-full">
         <Navbar />
@@ -77,6 +78,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      {/* 3. Contact Section */}
+      {/* <ContactPage /> */}
     </section>
   );
 }
