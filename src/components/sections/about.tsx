@@ -127,7 +127,7 @@ export default function AboutPage() {
           <div className="flex justify-center">
             <h1
               className="
-                font-medium text-white
+                font-bold text-white
                 text-3xl sm:text-4xl lg:text-5xl
                 leading-[1.1]
               "

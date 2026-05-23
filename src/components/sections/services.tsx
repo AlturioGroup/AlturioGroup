@@ -242,7 +242,7 @@ export default function ServicesPage() {
           <div className="flex justify-center">
             <h1
               className="
-                font-medium text-gray-900
+                font-bold text-gray-900
                 text-3xl sm:text-4xl lg:text-5xl
                 leading-[1.1]
               "
