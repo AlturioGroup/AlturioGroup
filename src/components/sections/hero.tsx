@@ -11,7 +11,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden rounded-t-3xl bg-white flex flex-col px-4 py-4">
+    <section id="home" className="relative w-full min-h-screen overflow-hidden rounded-t-3xl bg-white flex flex-col px-4 py-4">
       {/* 1. Navbar */}
       <div className="relative z-30 w-full">
         <Navbar />
