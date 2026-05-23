@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     // Send email
     const data = await resend.emails.send({
       from: "Alturio Group <contact@alturiogroup.com>",
-      to: "shaunmr.975@gmail.com",
+      to: "info@alturiogroup.com",
 
       subject: `New Contact Form: ${subject}`,
 
