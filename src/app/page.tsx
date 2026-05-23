@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Hero from "@/components/sections/hero";
 import ContactPage from "@/components/sections/contact/page";
-import Footer from "@/components/sections/footer";
+import Footer from "@/components/layout/footer";
 import ServicesSection from "@/components/sections/services";
 import About from "@/components/sections/about";
 

@@ -12,7 +12,7 @@ export default function Navbar() {
     { label: "Home", href: "#home" },
     { label: "About Us", href: "#about" },
     { label: "Services", href: "#services" },
-    { label: "Industries", href: "#industries" },
+    { label: "Expertise", href: "#expertise" },
   ];
 
   const contactButtonClassName =
@@ -29,7 +29,7 @@ export default function Navbar() {
           {/* Logo and Brand */}
           <div className="flex items-center gap-4">
             <Image
-              src="/logo.png"
+              src="/logos/logo.png"
               alt="AlturioGroup Logo"
               width={40}
               height={40}

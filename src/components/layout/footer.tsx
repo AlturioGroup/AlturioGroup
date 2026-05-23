@@ -97,7 +97,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-lg  flex items-center justify-center overflow-hidden pointer-events-none">
                 <Image
-                  src="/logo.png"
+                  src="/logos/logo.png"
                   alt="Alturio Group Logo"
                   width={48}
                   height={48}
@@ -158,25 +158,11 @@ export default function Footer() {
               <p>
                 Alturio Group Pvt. Ltd.,
                 <br />
-                123 Business Avenue,
+                InnerSpace Coworking, UB Business Centre
                 <br />
-                New York, NY 10001
-              </p>
-              <p>
-                <Link
-                  href="tel:+18000000000"
-                  className="hover:text-white transition-colors"
-                >
-                  +1 (800) 000-0000
-                </Link>
-              </p>
-              <p>
-                <Link
-                  href="mailto:contact@alturiogroup.com"
-                  className="hover:text-white transition-colors"
-                >
-                  contact@alturiogroup.com
-                </Link>
+                Near Aditya Hospital, Thrikkakara Ernakulam
+                <br />
+                Kochi-682021
               </p>
             </div>
           </div>

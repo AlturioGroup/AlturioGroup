@@ -229,7 +229,7 @@ function ServiceCard({ service }: { service: Service }) {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main id="services" className="min-h-screen bg-white">
       {/* ── HERO HEADER ── */}
       <section className="bg-white pt-20 pb-14 px-6 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">

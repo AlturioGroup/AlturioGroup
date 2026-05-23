@@ -1,17 +1,20 @@
 import Image from "next/image";
-import Navbar from "./navbar";
-import ContactPage from "./contact/page";
+import Navbar from "../layout/navbar";
+
 
 const stats = [
-  { value: "15+", label: "Years of Experience" },
-  { value: "300+", label: "Clients Served" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "12", label: "Industry Sectors" },
+  { value: "15–20", label: "Years Combined Experience" },
+  { value: "Big 4", label: "Methodologies & Governance" },
+  { value: "Global", label: "Cross-Border Compliance Exposure" },
+  { value: "Multi", label: "Industry Sector Expertise" },
 ];
 
 export default function Hero() {
   return (
-    <section id="home" className="relative w-full min-h-screen overflow-hidden rounded-t-3xl bg-white flex flex-col px-4 py-4">
+    <section
+      id="home"
+      className="relative w-full min-h-screen overflow-hidden rounded-t-3xl bg-white flex flex-col px-4 py-4"
+    >
       {/* 1. Navbar */}
       <div className="relative z-30 w-full">
         <Navbar />
@@ -24,7 +27,7 @@ export default function Hero() {
 
         {/* Image */}
         <Image
-          src="/hero.png"
+          src="/images/hero.png"
           alt="Alturio Group hero"
           fill
           className="object-cover object-center"
@@ -51,12 +54,16 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3 mt-6 sm:mt-8">
-              <button className="px-5 py-2.5 sm:px-7 sm:py-3 bg-blue-600 hover:bg-blue-700 transition-colors text-white text-sm sm:text-base font-semibold rounded-lg">
-                Get a Free Consultation
-              </button>
-              <button className="px-5 py-2.5 sm:px-7 sm:py-3 border border-white/50 hover:border-white transition-colors text-white text-sm sm:text-base font-medium rounded-lg backdrop-blur-sm">
-                Our Services →
-              </button>
+              <a href="#contact">
+                <button className="px-5 py-2.5 sm:px-7 sm:py-3 bg-blue-600 hover:bg-blue-700 transition-colors text-white text-sm sm:text-base font-semibold rounded-lg">
+                  Get a Free Consultation
+                </button>
+              </a>
+              <a href="#services">
+                <button className="px-5 py-2.5 sm:px-7 sm:py-3 border border-white/50 hover:border-white transition-colors text-white text-sm sm:text-base font-medium rounded-lg backdrop-blur-sm">
+                  Our Services →
+                </button>
+              </a>
             </div>
           </div>
 
@@ -67,7 +74,7 @@ export default function Hero() {
                 key={stat.label}
                 className="flex flex-col items-center justify-center py-4 sm:py-5 px-3 bg-black/30 hover:bg-black/40 transition-colors"
               >
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                <span className="text-xl sm:text-3xl lg:text-2xl font-bold text-white">
                   {stat.value}
                 </span>
                 <span className="text-[10px] sm:text-xs text-white/60 mt-1 text-center uppercase tracking-wide">
@@ -78,8 +85,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      {/* 3. Contact Section */}
-      {/* <ContactPage /> */}
     </section>
   );
 }

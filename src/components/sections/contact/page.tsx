@@ -2,9 +2,14 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "./contact-form";
 
 const contactInfo = [
-  { icon: Mail, label: "Email Us", value: "contact@alturiogroup.com" },
-  { icon: Phone, label: "Call Us", value: "+1 (800) 000-0000" },
-  { icon: MapPin, label: "Visit Us", value: "123 Business Ave, New York, NY" },
+  { icon: Mail, label: "Email Us", value: "info@alturiogroup.com" },
+  { icon: Phone, label: "Call Us", value: "+91 8089707942" },
+  {
+    icon: MapPin,
+    label: "Visit Us",
+    value: `InnerSpace Coworking, UB Business Centre,
+Near Aditya Hospital, Thrikkakara Ernakulam, Kochi-682021`,
+  },
 ];
 
 export default function ContactPage() {
