@@ -440,16 +440,6 @@ export default function ServicesPage() {
               );
             })}
           </div>
-
-          {/* count line */}
-          <div className="mt-6 flex justify-center">
-            <p className="text-gray-400 text-xs tracking-wide">
-              {isFiltered
-                ? `${filtered.length} service${filtered.length !== 1 ? "s" : ""} in ${activeCategory}`
-                : `All ${SERVICES.length} services`}
-            </p>
-          </div>
-
           {/* divider */}
           <div className="mt-6 h-px bg-blue-600/75" />
         </div>
