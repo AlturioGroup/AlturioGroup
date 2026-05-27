@@ -7,6 +7,8 @@
 //   No extra plugins needed; all shapes use inline borderRadius via style prop.
 
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // ─── types ───────────────────────────────────────────────────────────────────
 
@@ -270,6 +272,22 @@ export default function ServicesPage() {
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
+        </div>
+
+        {/* ── CTA BUTTON ── */}
+        <div className="flex justify-center mt-12">
+          <Link href="/services">
+            <Button
+              size="lg"
+              className="relative bg-blue-600 hover:bg-blue-600/90 text-white font-medium px-8 py-3 overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%), rgb(37, 99, 235)",
+              }}
+            >
+              <span className="relative z-10">View All Services</span>
+            </Button>
+          </Link>
         </div>
       </section>
     </main>
