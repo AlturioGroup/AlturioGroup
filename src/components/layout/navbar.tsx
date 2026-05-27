@@ -9,10 +9,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Expertise", href: "#expertise" },
+    { label: "Home", href: "/#home" },
+    { label: "About Us", href: "/#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Expertise", href: "/#expertise" },
   ];
 
   const contactButtonClassName =
@@ -60,7 +60,7 @@ export default function Navbar() {
               className={contactButtonClassName}
               style={contactButtonStyle}
             >
-              <a href="#contact">Contact Us</a>
+              <a href="/#contact">Contact Us</a>
             </Button>
           </div>
 
@@ -102,7 +102,7 @@ export default function Navbar() {
               className={contactButtonClassName}
               style={contactButtonStyle}
             >
-              <a href="#contact" onClick={() => setIsOpen(false)}>
+              <a href="/#contact" onClick={() => setIsOpen(false)}>
                 Contact Us
               </a>
             </Button>

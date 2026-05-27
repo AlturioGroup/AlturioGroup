@@ -9,110 +9,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-// ─── types ───────────────────────────────────────────────────────────────────
-
-interface Service {
-  id: number;
-  tag: string;
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  /** which two corners are rounded — "tl-br" | "tr-bl" */
-  roundedCorners: "tl-br" | "tr-bl";
-  /** tailwind col/row span classes */
-  gridClass: string;
-}
-
-// ─── data ────────────────────────────────────────────────────────────────────
-
-const SERVICES: Service[] = [
-  {
-    id: 1,
-    tag: "Executive Finance",
-    title: "Virtual CFO",
-    description:
-      "Enterprise-grade financial leadership — strategy, forecasting, treasury, and board-quality reporting without the full-time executive cost.",
-    image:
-      "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "CFO strategy session",
-    roundedCorners: "tl-br",
-    gridClass: "col-span-12 row-span-1 md:col-span-5 md:row-span-2",
-  },
-  {
-    id: 2,
-    tag: "Operations",
-    title: "Virtual COO",
-    description:
-      "Streamlined operations, cost leadership, and scalable execution — without the full-time overhead.",
-    image:
-      "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Operations management",
-    roundedCorners: "tr-bl",
-    gridClass: "col-span-12 row-span-1 md:col-span-3",
-  },
-  {
-    id: 3,
-    tag: "AI & Automation",
-    title: "AI-Driven Accounting & Automation",
-    description:
-      "Always-on, intelligent finance operations — automated reconciliations, predictive forecasting, and real-time MIS.",
-    image:
-      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "AI-driven automation",
-    roundedCorners: "tl-br",
-    gridClass: "col-span-12 row-span-1 md:col-span-4",
-  },
-  {
-    id: 4,
-    tag: "Risk & Audit",
-    title: "Internal Audit & Risk Management",
-    description:
-      "Proactive risk intelligence — strong internal controls, fraud prevention, and audit-ready financials.",
-    image:
-      "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Internal audit and risk",
-    roundedCorners: "tr-bl",
-    gridClass: "col-span-12 row-span-1 md:col-span-4",
-  },
-  {
-    id: 5,
-    tag: "Tax Strategy",
-    title: "Tax Planning — GST & Income Tax",
-    description:
-      "Strategic tax optimisation — maximise ITC, reduce leakages, and enhance post-tax profitability.",
-    image:
-      "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Tax planning documents",
-    roundedCorners: "tl-br",
-    gridClass: "col-span-12 row-span-1 md:col-span-3 md:row-span-2",
-  },
-  {
-    id: 6,
-    tag: "Compliance",
-    title: "Statutory Compliance Management",
-    description:
-      "100% adherence across GST, income tax, payroll, and ROC — zero penalties, seamless audits.",
-    image:
-      "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Statutory compliance paperwork",
-    roundedCorners: "tr-bl",
-    gridClass: "col-span-12 row-span-1 md:col-span-5",
-  },
-  {
-    id: 7,
-    tag: "Technology",
-    title: "ERP Implementation",
-    description:
-      "Integrated finance, operations, and HR infrastructure — real-time performance tracking and stronger profitability control.",
-    image:
-      "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "ERP system implementation",
-    roundedCorners: "tl-br",
-    gridClass: "col-span-12 row-span-1 md:col-span-4",
-  },
-];
+import { ALL_SERVICES } from "@/lib/services";
+import type { Service } from "@/types/services";
 
 // ─── corner radius helper ─────────────────────────────────────────────────────
 // "tl-br" → top-left and bottom-right are rounded (2rem), others 0
@@ -131,10 +29,11 @@ function cornerStyle(variant: "tl-br" | "tr-bl"): React.CSSProperties {
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <div
+    <Link
+      href={`/services/${service.slug}`}
       className={`
         group relative overflow-hidden bg-blue-600
-        ${service.gridClass}
+        ${service.gridClassFull}
         transition-transform duration-500 ease-out
         hover:-translate-y-1
       `}
@@ -192,7 +91,7 @@ function ServiceCard({ service }: { service: Service }) {
             {service.title}
           </h2>
           <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm">
-            {service.description}
+            {service.shortDesc}
           </p>
 
           {/* CTA — slides up on hover */}
@@ -223,7 +122,7 @@ function ServiceCard({ service }: { service: Service }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -268,7 +167,7 @@ export default function ServicesPage() {
               auto-rows-[240px] md:auto-rows-[280px] lg:auto-rows-[300px]
             "
           >
-            {SERVICES.map((service) => (
+            {ALL_SERVICES.slice(0, 7).map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>

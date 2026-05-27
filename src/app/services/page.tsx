@@ -8,241 +8,10 @@
 
 import Image from "next/image";
 import { useState, useMemo } from "react";
-
-// ─── types ────────────────────────────────────────────────────────────────────
-
-interface Service {
-  id: number;
-  tag: string;
-  category: string;
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  roundedCorners: "tl-br" | "tr-bl";
-  /** Used only when ALL services are shown — the original bento spans */
-  gridClassFull: string;
-}
-
-// ─── data ─────────────────────────────────────────────────────────────────────
-
-const SERVICES: Service[] = [
-  {
-    id: 1,
-    category: "Finance",
-    tag: "Executive Finance",
-    title: "Virtual CFO",
-    description:
-      "Enterprise-grade financial leadership — strategy, forecasting, treasury, and board-quality reporting without the full-time executive cost.",
-    image:
-      "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "CFO strategy session",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-5 md:row-span-2",
-  },
-  {
-    id: 2,
-    category: "Operations",
-    tag: "Operations",
-    title: "Virtual COO",
-    description:
-      "Streamlined operations, cost leadership, and scalable execution — without the full-time overhead.",
-    image:
-      "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Operations management",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-3",
-  },
-  {
-    id: 3,
-    category: "Technology",
-    tag: "AI & Automation",
-    title: "AI-Driven Accounting & Automation",
-    description:
-      "Always-on, intelligent finance operations — automated reconciliations, predictive forecasting, and real-time MIS.",
-    image:
-      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "AI-driven automation",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  {
-    id: 4,
-    category: "Risk & Audit",
-    tag: "Risk & Audit",
-    title: "Internal Audit & Risk Management",
-    description:
-      "Proactive risk intelligence — strong internal controls, fraud prevention, and audit-ready financials.",
-    image:
-      "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Internal audit and risk",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  {
-    id: 5,
-    category: "Tax",
-    tag: "Tax Strategy",
-    title: "Tax Planning — GST & Income Tax",
-    description:
-      "Strategic tax optimisation — maximise ITC, reduce leakages, and enhance post-tax profitability.",
-    image:
-      "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Tax planning documents",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-3 md:row-span-2",
-  },
-  {
-    id: 6,
-    category: "Compliance",
-    tag: "Compliance",
-    title: "Statutory Compliance Management",
-    description:
-      "100% adherence across GST, income tax, payroll, and ROC — zero penalties, seamless audits.",
-    image:
-      "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
-    imageAlt: "Statutory compliance paperwork",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-5",
-  },
-  {
-    id: 7,
-    category: "Technology",
-    tag: "Technology",
-    title: "ERP Implementation",
-    description:
-      "Integrated finance, operations, and HR infrastructure — real-time performance tracking and stronger profitability control.",
-    image:
-      "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "ERP system implementation",
-    roundedCorners: "tl-br",
-    // Row 3: 4 | 4+tall | 4  — id8 spans 2 rows so id9 fills beneath it
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  {
-    id: 8,
-    category: "Finance",
-    tag: "Financial Reporting",
-    title: "MIS & Financial Reporting",
-    description:
-      "Real-time management information systems — dashboards, KPI tracking, and investor-grade reporting that drives confident decisions.",
-    image:
-      "https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Financial reporting dashboard",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-5 md:row-span-2",
-  },
-  {
-    id: 9,
-    category: "Finance",
-    tag: "Fundraising",
-    title: "Fundraising & Investor Relations",
-    description:
-      "Compelling pitch decks, financial models, and investor narratives — built to close rounds and maintain trust post-funding.",
-    image:
-      "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Investor meeting",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-3",
-  },
-  // id7(4) + id8(4 tall) + id9(4) fills row 3 cols 1-4, then id9 fills row 4 col 1-4 under id7
-  // Row 4 right side: id10 wide + id11 narrow
-  {
-    id: 10,
-    category: "Operations",
-    tag: "Process Design",
-    title: "Business Process Optimisation",
-    description:
-      "End-to-end process mapping, bottleneck elimination, and SOP design — turning operational chaos into repeatable, scalable systems.",
-    image:
-      "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Process optimisation",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  {
-    id: 11,
-    category: "Tax",
-    tag: "International Tax",
-    title: "Transfer Pricing & International Tax",
-    description:
-      "Cross-border tax structuring, transfer pricing documentation, and FEMA compliance — built for global operations.",
-    image:
-      "https://images.pexels.com/photos/1851415/pexels-photo-1851415.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "International business",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  // Row 5: narrow-tall | wide | wide
-  {
-    id: 12,
-    category: "Compliance",
-    tag: "Payroll",
-    title: "Payroll & Labour Compliance",
-    description:
-      "Accurate, on-time payroll processing with full PF, ESI, PT, and TDS compliance — zero risk, zero delays.",
-    image:
-      "https://images.pexels.com/photos/4386373/pexels-photo-4386373.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Payroll management",
-    roundedCorners: "tr-bl",
-    gridClassFull: "col-span-12 md:col-span-3 md:row-span-2",
-  },
-  {
-    id: 13,
-    category: "Risk & Audit",
-    tag: "Forensic Accounting",
-    title: "Forensic Accounting & Fraud Investigation",
-    description:
-      "Deep-dive financial investigations — fraud detection, asset tracing, and litigation support when it matters most.",
-    image:
-      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Forensic investigation",
-    roundedCorners: "tl-br",
-    gridClassFull: "col-span-12 md:col-span-5",
-  },
-  {
-    id: 14,
-    category: "Technology",
-    tag: "Digital Finance",
-    title: "Digital Transformation — Finance Function",
-    description:
-      "Cloud accounting, automated workflows, and paperless finance operations — built for speed, accuracy, and scale.",
-    image:
-      "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Digital transformation",
-    roundedCorners: "tr-bl",
-    // Row 6: id12 tall continues left, id14(4) + id15(5) fill right
-    gridClassFull: "col-span-12 md:col-span-4",
-  },
-  {
-    id: 15,
-    category: "Finance",
-    tag: "Business Valuation",
-    title: "Business Valuation & Due Diligence",
-    description:
-      "Independent business valuations and M&A due diligence — credible, defensible, and deal-ready.",
-    image:
-      "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Business valuation",
-    roundedCorners: "tl-br",
-    // Row 6 right: wide beside id12-tall
-    gridClassFull: "col-span-12 md:col-span-5 md:row-span-2",
-  },
-  {
-    id: 16,
-    category: "Operations",
-    tag: "Supply Chain",
-    title: "Supply Chain & Vendor Management",
-    description:
-      "Strategic vendor evaluation, contract negotiation, and supply chain optimisation — cost reduction with zero compromise on quality.",
-    image:
-      "https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Supply chain management",
-    roundedCorners: "tr-bl",
-    // Row 7: wide finish
-    gridClassFull: "col-span-12 md:col-span-3",
-  },
-];
+import Link from "next/link";
+import { ALL_SERVICES as SERVICES } from "@/lib/services";
+import type { Service } from "@/types/services";
+import Navbar from "@/components/layout/navbar";
 
 // ─── categories ───────────────────────────────────────────────────────────────
 
@@ -352,7 +121,7 @@ function ServiceCard({ service, gridClass }: CardProps) {
             {service.title}
           </h2>
           <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm">
-            {service.description}
+            {service.shortDesc}
           </p>
 
           {/* CTA */}
@@ -396,8 +165,11 @@ export default function ServicesPage() {
 
   return (
     <main id="services" className="min-h-screen bg-white">
+      <div className="relative z-30 w-full px-5 pt-3 md:px-12 lg:px-20 shadow-sm">
+        <Navbar />
+      </div>
       {/* ── HERO HEADER ── */}
-      <section className="bg-white pt-20 pb-10 px-6 md:px-12 lg:px-20">
+      <section className="bg-white pt-18 pb-10 px-6 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center">
             <p className="text-blue-600 text-xs font-semibold tracking-[0.25em] uppercase mb-4">
@@ -467,15 +239,20 @@ export default function ServicesPage() {
                     "
                     >
                       {bentoCards.map((service, index) => (
-                        <ServiceCard
+                        <Link
                           key={service.id}
-                          service={service}
-                          gridClass={getGridClass(
-                            index,
-                            isFiltered,
-                            service.gridClassFull,
-                          )}
-                        />
+                          href={`/services/${service.slug}`}
+                          className="contents"
+                        >
+                          <ServiceCard
+                            service={service}
+                            gridClass={getGridClass(
+                              index,
+                              isFiltered,
+                              service.gridClassFull,
+                            )}
+                          />
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -483,16 +260,17 @@ export default function ServicesPage() {
                   {remainder.length > 0 && (
                     <div className="mt-4 md:mt-5 flex justify-center gap-4 md:gap-5 flex-wrap">
                       {remainder.map((service) => (
-                        <div
+                        <Link
                           key={service.id}
-                          className="flex-none w-full md:w-80"
+                          href={`/services/${service.slug}`}
+                          className="flex-none w-full md:w-1/3 lg:w-[49%]"
                           style={{ height: "280px" }}
                         >
                           <ServiceCard
                             service={service}
                             gridClass="col-span-12 h-full"
                           />
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   )}
