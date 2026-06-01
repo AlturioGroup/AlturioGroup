@@ -22,8 +22,48 @@ function cornerStyle(variant: "tl-br" | "tr-bl"): React.CSSProperties {
     : { borderRadius: `${Z} ${R} ${Z} ${R}` };
 }
 
-function cornerStyleInverse(variant: "tl-br" | "tr-bl"): React.CSSProperties {
-  return cornerStyle(variant === "tl-br" ? "tr-bl" : "tl-br");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: service.seo.title,
+    description: service.seo.description,
+    keywords: service.seo.keywords,
+
+    alternates: {
+      canonical: service.seo.canonical,
+    },
+
+    openGraph: {
+      title: service.openGraph.title,
+      description: service.openGraph.description,
+      url: service.seo.canonical,
+      images: [
+        {
+          url: service.openGraph.image,
+          alt: service.imageAlt,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: service.openGraph.title,
+      description: service.openGraph.description,
+      images: [service.openGraph.image],
+    },
+  };
 }
 
 // ─── page ─────────────────────────────────────────────────────────────────────
@@ -35,7 +75,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const RC = service.roundedCorners;
-  const RCinv: "tl-br" | "tr-bl" = RC === "tl-br" ? "tr-bl" : "tl-br";
+  const RCinv = RC === "tl-br" ? "tr-bl" : ("tl-br" as const);
 
   return (
     <main className="min-h-screen bg-white">

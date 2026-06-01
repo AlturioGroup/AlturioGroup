@@ -13,8 +13,54 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AltuiroGroup",
-  description: "Buisness Consulting and financial services",
+  metadataBase: new URL("https://alturiogroup.com"),
+
+  title: {
+    default: "Alturio Group",
+    template: "%s | Alturio Group",
+  },
+  authors: [
+    {
+      name: "Alturio Group",
+    },
+  ],
+  creator: "Alturio Group",
+  publisher: "Alturio Group",
+  category: "Business Consulting",
+  description:
+    "Alturio Group helps organizations achieve sustainable growth through business consulting, virtual CFO and COO services, operational excellence, tax planning, internal audit, and AI-driven transformation solutions.",
+
+  keywords: [
+    "Virtual Finance Director",
+    "Business Advisory",
+    "Strategic Planning",
+    "Risk Management",
+    "Financial Transformation",
+    "Corporate Finance",
+    "Process Improvement",
+    "Performance Management",
+    "AI Transformation",
+    "Business Growth Consulting",
+  ],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    type: "website",
+    siteName: "Alturio Group",
+    locale: "en_US",
+    url: "https://alturiogroup.com",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+  },
+  //   verification: {
+  //   google: "code"
+  // }
 };
 
 export default function RootLayout({
