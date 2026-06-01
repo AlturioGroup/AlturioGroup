@@ -71,16 +71,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
-      
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CV2SX2JTSM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <body>{children}</body>
 
-  gtag('config', 'G-CV2SX2JTSM');
-</script>
-    </html>
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-CV2SX2JTSM"
+      strategy="afterInteractive"
+    />
+
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CV2SX2JTSM');
+      `}
+    </Script>
+  </html>
   );
 }
