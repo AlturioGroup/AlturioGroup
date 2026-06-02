@@ -8,8 +8,6 @@ export default function robots(): MetadataRoute.Robots {
 
         allow: [
           "/",
-          "/services",
-          "/services/",
         ],
 
         disallow: [
@@ -19,7 +17,5 @@ export default function robots(): MetadataRoute.Robots {
     ],
 
     sitemap: "https://alturiogroup.com/sitemap.xml",
-
-    host: "https://alturiogroup.com",
   };
 }
