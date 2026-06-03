@@ -1,9 +1,7 @@
-
 import Image from "next/image";
 import { socialLinks } from "@/constants/socials";
 
 // ─── social links ────────────────────────────────────────────────────────────
-
 
 // ─── pillars ─────────────────────────────────────────────────────────────────
 
@@ -38,7 +36,7 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           HERO — full blue, logo + headline + paragraph
       ════════════════════════════════════════ */}
-      <section className="bg-blue-600 w-full px-6 md:px-12 lg:px-20 py-20 md:py-24">
+      <section className="bg-blue-600 min-h-screen w-full px-6 md:px-12 lg:px-20 py-20 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center">
             <p className="text-white text-xs font-semibold tracking-[0.25em] uppercase mb-4">
@@ -101,9 +99,9 @@ export default function AboutPage() {
 
             {/* Right: paragraph + CTAs */}
             <div className="flex flex-col gap-6 ">
-              <p className="text-white/80 text-base font-light leading-[1.85]">
+              <p className="text-white text-base text-justify font-light leading-[1.85]">
                 Alturio Group is a{" "}
-                <span className="font-semibold text-white">
+                <span className="font-semibold  text-white">
                   global business consulting firm
                 </span>{" "}
                 delivering Virtual CFO, Virtual COO, and Virtual CHRO services
@@ -112,7 +110,7 @@ export default function AboutPage() {
                 efficiency, compliance, and workforce management through
                 strategic, implementation-focused consulting.
               </p>
-              <p className="text-white/65 text-sm font-light leading-[1.85]">
+              <p className="text-white text-base text-justify font-light leading-[1.85]">
                 From AI-driven financial automation and ERP implementation to
                 tax planning and process optimisation, our team works closely
                 with businesses to build scalable systems that support long-term
@@ -160,7 +158,7 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           FOUR PILLARS
       ════════════════════════════════════════ */}
-      <section id="expertise" className="bg-white px-6 md:px-12 lg:px-20 py-20">
+      <section id="expertise" className="bg-white  px-6 md:px-12 lg:px-20 py-20">
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
           <div className="mb-12">
@@ -203,7 +201,7 @@ export default function AboutPage() {
                 <h3 className="text-gray-900 font-semibold text-lg leading-snug">
                   {p.title}
                 </h3>
-                <p className="text-gray-500 text-sm font-light leading-relaxed">
+                <p className="text-gray-500 text-sm text-justify font-light leading-relaxed">
                   {p.body}
                 </p>
               </div>
