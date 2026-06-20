@@ -99,9 +99,9 @@ function ServiceCard({ service }: { service: Service }) {
             className="
               flex items-center gap-2 mt-4
               text-white text-sm font-medium
-              opacity-0 translate-y-3
+              opacity-100 md:opacity-0 translate-y-3
               group-hover:opacity-100 group-hover:translate-y-0
-              transition-all duration-300 ease-out
+              transition-all duration-300 ease-out mb-3
             "
           >
             <span>Explore service</span>
