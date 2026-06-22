@@ -36,7 +36,7 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           HERO — full blue, logo + headline + paragraph
       ════════════════════════════════════════ */}
-      <section className="bg-blue-600 text-white px-6 md:px-12 lg:px-20 py-10 h-screen flex flex-col  relative ">
+      <section className="bg-blue-600 text-white px-6 md:px-12 lg:px-20 py-6 h-screen flex flex-col  relative ">
         {/* Mobile image - bottom */}
         <div className="absolute bottom-0 left-0 right-0 md:hidden z-10">
           <Image
@@ -110,7 +110,7 @@ export default function AboutPage() {
               </span>
             </h3> */}
             {/* Social Media Links */}
-            <div className="flex flex-wrap items-center gap-3 pt-7 md:pt-9 z-30">
+            <div className="flex flex-wrap items-center gap-3 pt-5 md:pt-9 z-30">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
