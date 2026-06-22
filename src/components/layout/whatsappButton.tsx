@@ -1,9 +1,16 @@
 // components/WhatsAppButton.tsx
 
 const PHONE = "918089707942";
-const MESSAGE = "Hello,%20I%20would%20like%20to%20know%20more%20about%20your%20services.";
+const MESSAGE =
+  "Hello,%20I%20would%20like%20to%20know%20more%20about%20your%20services.";
 
-function WhatsAppIcon({ color = "white", size = 32 }: { color?: string; size?: number }) {
+function WhatsAppIcon({
+  color = "white",
+  size = 32,
+}: {
+  color?: string;
+  size?: number;
+}) {
   return (
     <svg
       width={size}
@@ -27,7 +34,7 @@ function WhatsAppIcon({ color = "white", size = 32 }: { color?: string; size?: n
 
 export default function WhatsAppButton() {
   return (
-  <a
+    <a
       href={`https://wa.me/${PHONE}?text=${MESSAGE}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -35,14 +42,13 @@ export default function WhatsAppButton() {
       className="
         group fixed md:bottom-4 bottom-2 md:right-8 right-2 z-50
         flex items-center gap-3
-        bg-blue-600 text-white
+        bg-[#1fb154] text-white
         px-4 py-4 rounded-full
         shadow-lg
         hover:scale-105 transition-all duration-200
       "
     >
       <WhatsAppIcon color="white" size={34} />
-      
     </a>
   );
 }
