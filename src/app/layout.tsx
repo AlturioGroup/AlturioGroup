@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 import WhatsAppButton from "@/components/layout/whatsappButton";
@@ -11,6 +13,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const calSans = localFont({
+  src: "../app/fonts/CalSans-Regular.ttf",
+  variable: "--font-calsans",
 });
 
 export const metadata: Metadata = {
@@ -70,7 +78,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable}
+        ${calSans.variable}`}>
       <body>
         {children}
         <WhatsAppButton />

@@ -2,17 +2,32 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const navItems = [
     { label: "Home", href: "/#home" },
     { label: "About Us", href: "/#about" },
-    { label: "Services", href: "/#services" },
+    { label: "Services", href: "/#services", hasDropdown: true },
     { label: "Expertise", href: "/#expertise" },
+  ];
+
+  const serviceOptions = [
+    { label: "All", href: "/services" },
+    { label: "Virtual CFO", href: "/services/virtual-cfo" },
+    {
+      label: "Internal Audit & Risk Management",
+      href: "/services/internal-audit-risk-management",
+    },
+    { label: "ERP Implementation", href: "/services/erp-implementation" },
+    {
+      label: "Statutory Compliance Management",
+      href: "/services/statutory-compliance-management",
+    },
   ];
 
   const contactButtonClassName =
@@ -43,13 +58,49 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 mx-auto">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-gray-700 text-lg hover:text-blue-600 transition-colors font-medium"
-              >
-                {item.label}
-              </a>
+              <div key={item.label} className="relative">
+                {item.hasDropdown ? (
+                  <>
+                    <button
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      className="text-gray-700 text-lg hover:text-blue-600 transition-colors font-medium flex items-center gap-1"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {/* Desktop Services Dropdown */}
+                    <div
+                      className={`absolute top-full left-0 mt-0 bg-white rounded-lg shadow-lg z-50 min-w-[200px] overflow-hidden transition-all duration-300 ${
+                        isServicesOpen
+                          ? "opacity-100 pointer-events-auto"
+                          : "opacity-0 pointer-events-none"
+                      }`}
+                    >
+                      {serviceOptions.map((option) => (
+                        <a
+                          key={option.label}
+                          href={option.href}
+                          className="block px-4 py-3 text-gray-700 text-base hover:bg-blue-50 hover:text-blue-600 transition-colors border-b border-gray-100 last:border-b-0"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          {option.label}
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-gray-700 text-lg hover:text-blue-600 transition-colors font-medium"
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </div>
             ))}
           </div>
 
@@ -87,14 +138,49 @@ export default function Navbar() {
           }`}
         >
           {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="w-full text-center text-black hover:text-blue-400 transition-colors py-4 border-b border-white/10"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
+            <div key={item.label} className="w-full flex flex-col">
+              {item.hasDropdown ? (
+                <>
+                  <button
+                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                    className="w-full text-center text-black hover:text-blue-400 transition-colors py-4 border-b border-white/10 flex items-center justify-center gap-2"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {/* Mobile Services Dropdown */}
+                  {isServicesOpen && (
+                    <div className="w-full bg-gray-50 flex flex-col">
+                      {serviceOptions.map((option) => (
+                        <a
+                          key={option.label}
+                          href={option.href}
+                          className="text-center text-black text-base hover:text-blue-400 transition-colors py-3 border-b border-white/10 last:border-b-0"
+                          onClick={() => {
+                            setIsServicesOpen(false);
+                            setIsOpen(false);
+                          }}
+                        >
+                          {option.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <a
+                  href={item.href}
+                  className="w-full text-center text-black hover:text-blue-400 transition-colors py-4 border-b border-white/10"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )}
+            </div>
           ))}
           <div className="py-4">
             <Button

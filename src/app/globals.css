@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --font-custom-sans: var(--font-outfit), sans-serif;
+  --font-display: var(--font-calsans), sans-serif;
+  --text-4xl-custom: 40px;
+  --text-3half-xl: 36px;
+  --text-xl-custom: 20px;
+}
+
 html {
   scroll-behavior: smooth !important;
 }
