@@ -79,7 +79,7 @@ export default function AboutPage() {
             Who We Are
           </h3>
           <div className="max-w-5xl mx-auto">
-            <p className="font-normal font-custom-sans text-white text-justify text-xl md:text-[22px] pt-5 md:pt-8">
+            <p className="font-normal font-custom-sans text-white text-justify text-lg md:text-[22px] pt-5 md:pt-8">
               Alturio Group is a global business consulting firm delivering
               Virtual CFO, Virtual COO, and Virtual CHRO services to growing
               businesses worldwide. We help startups, SMEs, and enterprises
@@ -87,7 +87,7 @@ export default function AboutPage() {
               and workforce management through strategic, implementation-focused
               consulting.
             </p>
-            <p className="font-normal font-custom-sans text-white text-justify text-xl md:text-[22px] pt-5 md:pt-9">
+            <p className="font-normal font-custom-sans text-white text-justify text-lg md:text-[22px] pt-5 md:pt-9">
               From AI-driven financial automation and ERP implementation to tax
               planning and process optimisation, our team works closely with
               businesses to build scalable systems that support long-term
